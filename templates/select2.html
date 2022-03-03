@@ -1,0 +1,39 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block header %}
+    <link rel='stylesheet' type="text/css" href="{% static 'confirm2.css' %}"></link>
+{% endblock header %}
+
+{% block content %} 
+<div class="container">
+
+    <form class="form-signin" method='post'>{% csrf_token %} 
+ 
+        <h1>予約管理者ページ</h1>
+        <hr>
+        <h4>現在の予約状況です.</h4>
+
+        <table>
+            <tr>
+            {% for i in aitems %}
+                    <th> {{ i }} <a href = "{% url 'decision5' i %}">{{i}}</a></th>        
+            {% endfor %} 
+            </tr>
+            {% for j in data %}
+               {% if j == '#' %}
+                    </tr><tr>
+               {% else %}
+                    <td> {{ j }} </td>
+               {% endif %}
+            {% endfor %} 
+            </tr>
+        </table>
+
+        <hr id="under_line">
+        <a href="{% url 'select2' %}" class="logout">select</a>
+        <a href="{% url 'login' %}" class="logout">logout</a>
+    </form>
+</div>
+
+{% endblock content %}

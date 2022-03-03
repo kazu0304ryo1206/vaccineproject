@@ -1,0 +1,85 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block header %}
+    <link rel='stylesheet' type='text/css' href="{% static 'style.css' %}">
+{% endblock header %}    
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'admin/css/base.css' %}"/>-->
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'admin/css/forms.css' %}"/>-->
+    <!--<script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>-->
+    <!--{{ add_task_form.media }}    -->
+    <!--<script type="text/javascript" src="{% static 'admin/js/core.js' %}"></script>
+    <script type="text/javascript" src="{% static 'admin/js/admin/RelatedObjectLookups.js' %}"></script>-->
+{% block content %}  
+<div class="container">
+    <navi id='process'>
+        <li>select</li>
+        <li>place</li>
+        <li>day</li>
+        <li>time</li>
+        <li>confirm</li>
+    </navi>
+  
+    <h1>予約</h1>
+    <hr>
+    <h4>日付を選択してください</h4>
+<div id="calendar">
+    <div id="current">
+        <a href="{% url 'last_month' %}" id="before">◀</a>
+        <h2 id="yearmonth">{{ year }}/{{ month }} </h2>
+        <a  href="{% url 'next_month' %}" id="after">▶</a>
+    </div>
+    <table id="table2">
+        <tr>
+            <th class="test2">Sun</th>
+            <th class="test2">Mon</th>
+            <th class="test2">Tue</th>
+            <th class="test2">Wed</th>
+            <th class="test2">Thu</th>
+            <th class="test2">Fri</th>
+            <th class="test2">Sat</th>
+        </tr>
+        <tr>
+            {% for i in total %}
+                {% if i == '#' %} 
+                    </tr><tr></tr>
+                {% else %}
+                    <td class="test3">{{ i }}
+                            {% if i in empty_day %}
+                                <br><a href="{% url 'decision' i %}">〇</a>
+                            {% elif i in few_day %}
+                                <br><a href="{% url 'decision' i %}">△</a>
+                            {% elif i in full_day %}
+                                <br><a id="batsu">×</a>
+                            {% else %}
+                                <br><div>---</div>
+                            {% endif %}
+                    </td>
+                {% endif %}  
+            {% endfor %} 
+        </tr>
+    </table>
+    
+</div>
+<hr id="under_line">
+    <a href="{% url 'select' %}" id="logout">select</a>
+    <a href="{% url 'login' %}" id="logout">logout</a>
+
+{% if selected_user == 1 %}
+    <table id="already">
+        <h3 id="selected">予約済</h3>
+        <tr>
+            <th>会場</th>
+            <th>年月日</th>
+            <th>時間</th>
+        </tr>
+
+        <tr>
+            <td> {{ decision_place }} </td>
+            <td> {{ decision_day }} </td>
+            <td> {{ decision_time }} </td>
+        </tr>
+    </table>
+{% endif %}
+</div>
+{% endblock content %}

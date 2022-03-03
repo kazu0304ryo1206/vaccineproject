@@ -1,0 +1,77 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block header %}
+    <link rel='stylesheet' type="text/css" href="{% static 'select.css' %}"></link>
+{% endblock header %}
+
+{% block content %} 
+<div class="container">
+
+    <form class="form-signin" method='post'>{% csrf_token %} 
+    <!--
+    <div class='box'>select</div>
+    <div class='box2'>
+        <navi id='process'>           
+            <li>place</li>
+            <li>day</li>
+            <li>time</li>    
+        </navi>
+        <navi id='process'>
+            <li>place</li>
+            <li>day</li>
+            <li>time</li>
+        </navi>
+    </div>
+    <div class='box'>confirm</div>
+-->
+        <navi id='process'>
+            <li>select</li>
+            <li>place/day</li>
+            <li>day/time</li>
+            <li>time/plce</li>
+            <li>confirm</li>
+        </navi>
+        <h1>予約</h1>
+        <hr>
+  
+        <h4>選択方法を選択してください</h4>
+
+        <table>
+            <tr>
+                <th>選択方法</th>
+                <th>---</th>
+            </tr>
+            <tr>
+                <td>会場から選択</td>
+                <td><a href="{% url 'place' %}" id="place">〇</a></td>
+            </tr>
+            <tr>
+                <td>日時から選択</td>
+            <td><a href="{% url 'calendar' %}" id="calendar">〇</a></td>
+            </tr>
+        </table>
+        <hr id="under_line">
+        <a href="{% url 'login' %}" id="logout">logout</a>
+
+        {% if selected_user == 1 %}
+
+            <table id="already">
+                <h3 id="selected">予約済</h3>
+                <tr>
+                    <th>会場</th>
+                    <th>年月日</th>
+                    <th>時間</th>
+                </tr>
+                <tr>
+                    <td> {{ decision_place }} </td>
+                    <td> {{ decision_day }} </td>
+                    <td> {{ decision_time }} </td>
+                </tr>
+
+            </table>
+        {% endif %}
+    </form>
+</div>
+
+{% endblock content %}

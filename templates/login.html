@@ -1,0 +1,29 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block header %}
+    <link rel='stylesheet' type="text/css" href="{% static 'login.css' %}"></link>
+{% endblock header %}
+
+{% block content %} 
+<div class="container">
+
+    <form class="form-signin" method='post'>{% csrf_token %} 
+        <h2>予約</h2>
+        <h1 class="h3 mb-3 fw-normal">Please login</h1>
+        <hr>
+            {% if error %} 
+            {{ eror }} 
+            {% endif %} 
+        <label for="inputEmail" class="sr-only"></label>
+        <input type="text" id="inputEmail" class="form-control" placeholder="username" name="username_data" required autofocus>
+        <label for="inputPassword" class="sr-only"></label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="password" name="password_data" required>
+        <div class="checkbox mb-3"></div>
+        <button class="w-100 btn-lg btn-primary" type="submit">login</button>
+        <p class="mt-5 mb-3 text-muted">&copy;2017-2021</p>
+    </form>
+</div>
+
+
+{% endblock content %}

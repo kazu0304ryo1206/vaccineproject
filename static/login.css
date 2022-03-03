@@ -1,0 +1,23 @@
+body{
+    text-align: center;
+    font-family: '游明朝','Yu Mincho',YuMincho,'Hiragino Mincho Pro',serif;
+    background-color:rgb(247, 234, 218);
+}
+
+.container{
+        width:300px;
+}
+
+h2,h1{
+    position:relative;
+    top:30px;
+}
+
+hr{
+    text-align: center;
+    position:relative;
+    top:20px;
+    width:400px;
+    left:50%;
+    transform:translateX(-50%)
+}

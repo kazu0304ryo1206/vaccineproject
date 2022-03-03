@@ -1,0 +1,71 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block header %}
+    <link rel='stylesheet' type="text/css" href="{% static 'place.css' %}"></link>
+{% endblock header %}
+
+{% block content %} 
+<div class="container">
+
+    <form class="form-signin" method='post'>{% csrf_token %} 
+        <navi id='process'>
+            <li>select</li>
+            <li>place</li>
+            <li>day</li>
+            <li>time</li>
+            <li>confirm</li>
+        </navi>
+        <h1>予約</h1>
+        <hr>
+        <h4>会場を選択してください</h4>
+        
+        <div id ="a_box">
+            <table>
+                <tr>
+                    <th>会場</th>
+                    <th>---</th>
+                </tr>
+                {% for i in place_list2 %}
+                <tr>
+                    <td> {{ i.0 }} </td>
+                    {% if i.1 != capacity %}
+                        <td><a href="{% url 'decision3' i.0 %}" id="place">〇</a></td>
+                    {% else %}
+                        <td><a id="batsu">×</a></td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div id="b_box">
+            <img src="/media/katakura.png" id="kata_map">
+        </div>
+        
+        <hr id="under_line">
+        <a href="{% url 'select' %}" id="logout">select</a>
+        <a href="{% url 'login' %}" id="logout">logout</a>
+
+        {% if selected_user == 1 %}
+            <table id="already">
+                <h3 id="selected">予約済</h3>
+                <tr>
+                    <th>会場</th>
+                    <th>年月日</th>
+                    <th>時間</th>
+                </tr>
+
+                <tr>
+                    <td> {{ decision_place }} </td>
+                    <td> {{ decision_day }} </td>
+                    <td> {{ decision_time }} </td>
+                </tr>
+            </table>
+        {% endif %}
+
+
+    </form>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,82 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block header %}
+    <link rel='stylesheet' type="text/css" href="{% static 'time.css' %}"></link>
+{% endblock header %}
+
+{% block content %} 
+<div class="container">
+
+    <form class="form-signin" method='post'>{% csrf_token %} 
+        <navi id='process'>
+            <li>select</li>
+            <li>place</li>
+            <li>day</li>
+            <li>time</li>
+            <li>confirm</li>
+        </navi>
+        
+        <h1>予約</h1>
+        <hr>
+        <h4>時間を選択してくだい</h4>
+        <div id="tableblock">
+        <table>
+            <tr>
+                <th>時間</th>
+                <th>---</th>
+            </tr>
+            {% for time in time_count_list %}
+                <tr>
+                    <td> {{ time.0 }} </td>
+                    {% if time.1 == capacity %} 
+                        <td><a id="batsu">×</a></td>
+                    {% elif time.1 >= 1 %} 
+                        <td><a href="{% url 'decision2' time.0 %}" id="calendar2">△</a></td>
+                    {% else %}
+                        <td><a href="{% url 'decision2' time.0 %}" id="calendar">〇</a></td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </table>
+
+        <!--<table>
+            <tr>
+                <th>---</th>
+            </tr>
+                {% for time in time_count_list %}
+                    <tr>
+                    {% if time == 2 %} 
+                        <td><a href="" id="calendar">×</a></td>
+                    {% else %}
+                        <td><a href="{% url 'decision2' time %}" id="calendar">選択</a></td>
+                    {% endif %}
+                    </tr>
+                {% endfor %}
+        </table>-->
+        </div>
+        <hr id ="under_line">
+        <a href="{% url 'select' %}" class="logout">select</a>
+        <a href="{% url 'login' %}" class="logout">logout</a>
+        </div>
+        {% if selected_user == 1 %}
+            <table id="already">
+                <h3 id="selected">予約済</h3>
+                <tr>
+                    <th>会場</th>
+                    <th>年月日</th>
+                    <th>時間</th>
+                </tr>
+
+                <tr>
+                    <td> {{ decision_place }} </td>
+                    <td> {{ decision_day }} </td>
+                    <td> {{ decision_time }} </td>
+                </tr>
+            </table>
+        {% endif %}
+
+    </form>
+
+
+{% endblock content %}

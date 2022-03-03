@@ -1,0 +1,53 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block header %}
+    <link rel='stylesheet' type="text/css" href="{% static 'confirm.css' %}"></link>
+{% endblock header %}
+
+{% block content %} 
+<div class="container">
+
+    <form class="form-signin" method='post'>{% csrf_token %} 
+        <navi id='process'>
+            <li>select</li>
+            <li>place</li>
+            <li>day</li>
+            <li>time</li>
+            <li>confirm</li>
+        </navi>
+        <h1>予約</h1>
+        <hr>
+        <h4>予約内容を確認してくだい</h4>
+
+        <table>
+            <tr>
+                <th>会場</th>
+                <th>年月日</th>
+                <th>時間</th>
+            </tr>
+
+            <tr>
+                <td> {{ decision_place }} </td>
+                <td> {{ decision_day }} </td>
+                <td> {{ decision_time }} </td>
+            </tr>
+
+        </table>
+        {% if selected_user == 1 %}
+            <h3 id="selected">予約済</h3>
+        {% endif %} 
+        <div id="determin">
+            {% if decision_place != "" and selected_user == 0 %}
+                <a href="{% url 'decision4' %}">決定</a>
+            {% else %}    
+            <br><a id="batsu">×</a>
+            {% endif %}
+        </div>
+        <hr id="under_line">
+        <a href="{% url 'select' %}" class="logout">select</a>
+        <a href="{% url 'login' %}" class="logout">logout</a>
+    </form>
+</div>
+
+{% endblock content %}

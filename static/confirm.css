@@ -1,0 +1,153 @@
+body{
+    text-align: center;
+    font-family: '游明朝','Yu Mincho',YuMincho,'Hiragino Mincho Pro',serif;
+    background-color:rgb(247, 234, 218);
+}
+
+#place,#calendar{
+    text-align: center;
+    display:inline-block;
+    width:50px;
+    background-color:aqua;
+    height:30px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 5px;
+    border-width: 1px;
+
+}
+
+#place:hover,#calendar:hover{
+    background-color:blueviolet;
+
+}
+
+table{
+    position:relative;
+    left:50%;
+    transform:translateX(-50%);
+    top:50px;
+}
+
+th{
+    border:1px solid  rgb(14, 3, 3);
+    width:150px;
+    text-align: center; 
+    border-collapse: collapse;
+    height: 30px;
+    background-color:rgb(192, 181, 181);
+}
+
+td{
+    border:1px solid  rgb(14, 3, 3);
+    width:150px;
+    text-align: center; 
+    border-collapse: collapse;
+    height: 60px;
+}
+
+
+li{
+    display:inline-block;
+    background-color:rgb(192, 181, 181);
+    width:80px;
+    margin:0 5 0 5px;
+}
+
+li:nth-child(5){
+    background-color:pink;
+}
+
+#process{
+    position:absolute;
+    left:50%;
+    top:20px;
+    transform:translateX(-50%);
+    width:450px;
+}
+
+#process:after{
+    content:"";
+    display:block;
+    clear:both;
+}
+
+h1{
+    position:relative;
+    top:70px;
+}
+
+h4{
+    position:relative;
+    top:40px;
+}
+
+a{
+    display:inline-block;
+    position:relative;
+    top:100px;
+    width:80px;
+    text-decoration-line: none;
+    background-color:rgb(44, 44, 235);
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    color: white;
+}
+
+a:hover{
+    background-color:blueviolet;
+    color: white;
+}
+
+.logout{
+    position:relative;
+    text-align: center;
+    display:inline-block;
+    width:80px;
+    top:100px;
+    text-decoration-line: none;
+    background-color:rgb(95, 158, 231);
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    color: white;
+}
+
+.logout:hover{
+    background-color:blueviolet;
+}
+
+#determin{
+    content:"";
+    display:block;
+    clear:both;
+}
+
+#under_line{
+    position:relative;
+    top:100px;
+}
+
+#already{
+    position:relative;
+    left:50%;
+    transform:translateX(-50%);
+    top:120px;
+}
+
+#batsu{
+    text-decoration-line: none;
+    background-color:rgb(247, 122, 159);
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    color: white;
+}
+
+#selected{
+    position:relative;
+    left:50%;
+    transform:translateX(-50%);
+    top:120px;
+}
